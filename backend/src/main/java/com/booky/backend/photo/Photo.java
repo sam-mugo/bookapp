@@ -21,5 +21,55 @@ public class Photo {
 
     @OneToOne(mappedBy = "photo")
     private Book book;
-    
+
+    public Photo() {
+    }
+
+    public Photo(Long id, String urlSmall, String urlMedium, String urlLarge, Book book) {
+        this.id = id;
+        this.urlSmall = urlSmall;
+        this.urlMedium = urlMedium;
+        this.urlLarge = urlLarge;
+        this.book = book;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUrlSmall() {
+        return urlSmall;
+    }
+
+    public void setUrlSmall(String urlSmall) {
+        this.urlSmall = urlSmall;
+    }
+
+    public String getUrlMedium() {
+        return urlMedium;
+    }
+
+    public void setUrlMedium(String urlMedium) {
+        this.urlMedium = urlMedium;
+    }
+
+    public String getUrlLarge() {
+        return urlLarge;
+    }
+
+    public void setUrlLarge(String urlLarge) {
+        this.urlLarge = urlLarge;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }

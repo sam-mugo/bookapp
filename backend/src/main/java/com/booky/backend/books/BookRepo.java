@@ -1,2 +1,6 @@
-package com.booky.backend.books;public interface BookRepo {
+package com.booky.backend.books;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookRepo extends JpaRepository<Book, Long> {
 }

@@ -1,2 +1,6 @@
-package com.booky.backend.photo;public interface PhotoRepo {
+package com.booky.backend.photo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PhotoRepo extends JpaRepository<Photo, Long> {
 }
