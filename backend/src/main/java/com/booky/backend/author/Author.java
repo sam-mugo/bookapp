@@ -2,6 +2,7 @@ package com.booky.backend.author;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,9 @@ import com.booky.backend.books.Book;
 @Table(name = "author")
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "author_id")
-    private Long id;
+    private UUID authorID;
  
     @Column(nullable = false)
     private String firstName;
@@ -35,20 +36,20 @@ public class Author {
     public Author() {
     }
 
-    public Author(Long id, String firstName, String lastName, Date birthDate, Collection<Book> books) {
-        this.id = id;
+    public Author(UUID authorID, String firstName, String lastName, Date birthDate, Collection<Book> books) {
+        this.authorID = authorID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.books = books;
     }
 
-    public Long getId() {
-        return id;
+    public UUID getAuthorID() {
+        return authorID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAuthorID(UUID authorID) {
+        this.authorID = authorID;
     }
 
     public String getFirstName() {
