@@ -2,7 +2,7 @@ package com.booky.backend.author;
 
 import java.sql.Date;
 import java.util.Collection;
-import java.util.UUID;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.booky.backend.books.Book;
@@ -18,9 +19,18 @@ import com.booky.backend.books.Book;
 @Table(name = "author")
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "author_id")
-    private UUID authorID;
+    @Column(nullable = false, updatable = false)
+    @SequenceGenerator(
+            name = "primary_sequence",
+            sequenceName = "primary_sequence",
+            allocationSize = 1,
+            initialValue = 100
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "primary_sequence"
+    )
+    private Long id;
  
     @Column(nullable = false)
     private String firstName;
@@ -28,7 +38,6 @@ public class Author {
     @Column(nullable = false)
     private String lastName;
 
-    private Date birthDate;
 
     @ManyToMany(mappedBy = "authors")
     private Collection<Book> books;
@@ -36,20 +45,19 @@ public class Author {
     public Author() {
     }
 
-    public Author(UUID authorID, String firstName, String lastName, Date birthDate, Collection<Book> books) {
-        this.authorID = authorID;
+    public Author(Long id, String firstName, String lastName, Date birthDate, Collection<Book> books) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
         this.books = books;
     }
 
-    public UUID getAuthorID() {
-        return authorID;
+    public Long getId() {
+        return id;
     }
 
-    public void setAuthorID(UUID authorID) {
-        this.authorID = authorID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -66,14 +74,6 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     public Collection<Book> getBooks() {
