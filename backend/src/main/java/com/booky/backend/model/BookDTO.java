@@ -11,14 +11,16 @@ public class BookDTO {
 
     @NotNull
     @Size(max = 255)
-    private String categoryName;
+    private String title;
 
     @NotNull
-    private String categoryDescription;
+    private Long isbn;
 
     @NotNull
-    @Size(max = 255)
-    private String categoryImage;
+    @Size(max = 25)
+    private Double rating;
 
+    @NotNull
+    private Date publishedDate;
     
 }
